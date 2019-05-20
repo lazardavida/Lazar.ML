@@ -12,7 +12,6 @@ namespace Lazar.ML.SentimentAnalysis
         private MLContext _mlContext;
         private ITransformer _model;
 
-
         public SentimentAnalysis()
         {
             _mlContext = new MLContext();
@@ -23,16 +22,21 @@ namespace Lazar.ML.SentimentAnalysis
             try
             {
                 DataViewSchema dataSchema;
-                using (var stream = System.IO.File.OpenRead(path))
+                if (File.Exists(path))
                 {
-                    _model = _mlContext.Model.Load(stream, out dataSchema);
+                    using (var stream = System.IO.File.OpenRead(path))
+                    {
+                        _model = _mlContext.Model.Load(stream, out dataSchema);
+                    }
+                } else
+                {
+                    throw new ApplicationException("Unable to find model to be loaded");
                 }
             }
             catch (Exception ex)
             {
                 throw new ApplicationException(ex.Message);
             }
-
         }
 
         public CalibratedBinaryClassificationMetrics TrainModel(string trainDataPath, string outputPath = null)
@@ -74,7 +78,6 @@ namespace Lazar.ML.SentimentAnalysis
             {
                 throw new ApplicationException(ex.Message);
             }
-
         }
     }
 }
