@@ -1,5 +1,6 @@
 ﻿using Lazar.ML.SentimentAnalysis.Models;
 using Microsoft.ML;
+using Microsoft.ML.Data;
 using System;
 using System.IO;
 using static Microsoft.ML.DataOperationsCatalog;
@@ -34,7 +35,7 @@ namespace Lazar.ML.SentimentAnalysis
 
         }
 
-        public void TrainModel(string trainDataPath, string outputPath = null)
+        public CalibratedBinaryClassificationMetrics TrainModel(string trainDataPath, string outputPath = null)
         {
             try
             {
@@ -49,6 +50,11 @@ namespace Lazar.ML.SentimentAnalysis
                     {
                         _mlContext.Model.Save(_model, dataView.Schema, outputPath);
                     }
+                    var predictions = _model.Transform(splitDataView.TestSet);
+                    return _mlContext.BinaryClassification.Evaluate(predictions, "Label");
+                } else
+                {
+                    throw new ApplicationException("Unable to find training data");
                 }
             }
             catch (Exception ex)
