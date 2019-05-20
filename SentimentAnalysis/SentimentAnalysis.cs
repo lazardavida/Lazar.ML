@@ -30,7 +30,7 @@ namespace Lazar.ML.SentimentAnalysis
                     }
                 } else
                 {
-                    throw new ApplicationException("Unable to find model to be loaded");
+                    throw new FileNotFoundException("Unable to find model to be loaded");
                 }
             }
             catch (Exception ex)
@@ -58,7 +58,7 @@ namespace Lazar.ML.SentimentAnalysis
                     return _mlContext.BinaryClassification.Evaluate(predictions, "Label");
                 } else
                 {
-                    throw new ApplicationException("Unable to find training data");
+                    throw new FileNotFoundException("Unable to find training data");
                 }
             }
             catch (Exception ex)
