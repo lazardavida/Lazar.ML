@@ -14,5 +14,5 @@ Sample Usage:
 `var prediction = sa.MakePrediction(data);`
 
 #### output
-`Console.WriteLine("Use text: {0}", testText);`<br />
+`Console.WriteLine("Use text: {0}", data.Text);`<br />
 `Console.WriteLine("Prediciton of {0} with probability {1}", prediction.Prediction, prediction.Probability);`
