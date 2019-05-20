@@ -45,8 +45,8 @@ namespace Lazar.ML.SentimentAnalysis
             {
                 if (File.Exists(trainDataPath))
                 {
-                    IDataView dataView = _mlContext.Data.LoadFromTextFile<SentimentData>(trainDataPath, hasHeader: false);
-                    TrainTestData splitDataView = _mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2);
+                    var dataView = _mlContext.Data.LoadFromTextFile<SentimentData>(trainDataPath, hasHeader: false);
+                    var splitDataView = _mlContext.Data.TrainTestSplit(dataView, testFraction: 0.2);
                     var estimator = _mlContext.Transforms.Text.FeaturizeText(outputColumnName: "Features", inputColumnName: nameof(SentimentData.Text))
                            .Append(_mlContext.BinaryClassification.Trainers.SdcaLogisticRegression(labelColumnName: "Label", featureColumnName: "Features"));
                     _model = estimator.Fit(splitDataView.TrainSet);
