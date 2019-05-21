@@ -7,12 +7,12 @@ using static Microsoft.ML.DataOperationsCatalog;
 
 namespace Lazar.ML.SentimentAnalysis
 {
-    public class SentimentAnalysis
+    public class SentimentAnalysisEngine
     {
         private MLContext _mlContext;
         private ITransformer _model;
 
-        public SentimentAnalysis()
+        public SentimentAnalysisEngine()
         {
             _mlContext = new MLContext();
         }
