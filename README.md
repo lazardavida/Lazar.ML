@@ -2,7 +2,7 @@
 Sample Usage:
 
 #### initialize
-`var sa = new SentimentAnalysis();`
+`var sa = new SentimentAnalysisEngine();`
 
 #### train the model
 `sa.TrainModel(Path.Combine(Environment.CurrentDirectory, "sentiment-train-data.csv"));`
