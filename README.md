@@ -5,7 +5,14 @@ Sample Usage:
 `var sa = new SentimentAnalysisEngine();`
 
 #### train the model
+Train without saving the model
 `sa.TrainModel(Path.Combine(Environment.CurrentDirectory, "sentiment-train-data.csv"));`
+
+Train with saving the model
+`sa.TrainModel(Path.Combine(Environment.CurrentDirectory, "sentiment-train-data.csv"), Path.Combine(Environment.CurrentDirectory, "model.zip"));`
+
+### or load a saved model
+`sa.LoadModel(Path.Combine(Environment.CurrentDirectory, "model.zip"));`
 
 #### create the SentimentData class object to test against the model
 `SentimentData data = new SentimentData { Text = "this was the worst decision ever" };`
