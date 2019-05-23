@@ -5,10 +5,10 @@ Sample Usage:
 `var sa = new SentimentAnalysisEngine();`
 
 #### train the model
-Train without saving the model
+Train without saving the model <br />
 `sa.TrainModel(Path.Combine(Environment.CurrentDirectory, "sentiment-train-data.csv"));`
 
-Train with saving the model
+Train with saving the model <br />
 `sa.TrainModel(Path.Combine(Environment.CurrentDirectory, "sentiment-train-data.csv"), Path.Combine(Environment.CurrentDirectory, "model.zip"));`
 
 ### or load a saved model
